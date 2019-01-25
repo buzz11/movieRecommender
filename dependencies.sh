@@ -1,0 +1,9 @@
+pip install wtforms
+pip install flask
+pip install cherrypy
+pip install paste
+pip install pyspark
+pip install numpy
+pip install pandas
+pip install matplotlib
+pip install tmdbsimple

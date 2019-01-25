@@ -1,0 +1,31 @@
+<head>
+  <style>
+  body {
+    font-family: Verdana, Geneva, sans-serif;
+  }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">// <![CDATA[
+          function loading(){
+              $("#loading").show();
+              $("#content").hide();
+          }
+  // ]]></script>
+  <div id="loading"></div>
+  <div id="content">
+  <h2>here are some movies you will likely enjoy:</h2>
+  <form action="/validateModel", method="POST">
+    <input type="submit" value="validate recommender"/>
+  </form>
+    {% for tup in result %}
+    <h2><a href={{ tup[4] }} target="_blank">{{ tup[0] }}</a></h2>
+    <p><b>{{ tup[1] }}</b></p>
+    <p>{{ tup[2] }}</p>
+    <p>
+      <a href={{ tup[4] }} target="_blank"><img src={{ tup[3] }} height="500" width="333"></a>
+    </p>
+    <hr>
+    {% endfor %}
+  </div>
+</body>

@@ -1,0 +1,26 @@
+<head>
+  <style>
+  body {
+    font-family: Verdana, Geneva, sans-serif;
+  }
+  </style>
+</head>
+<h2>{{ movie }}</h2>
+<p>
+  <a href="https://www.themoviedb.org/" target="_blank"><img border="0" src="static/moviedb.svg" style="float:right; margin:10px 10px 10px 10px" width="125"></a>
+</p>
+<p>
+  <a href={{ mp }} target="_blank"><img src={{ pp }} style="float:right; margin:10px 20px 10px 20px" height="750" width="500"></a>
+</p>
+<h3>{{ tl }}</h3>
+<p>{{ ov }}</p>
+<h4>provide a rating - </h4>
+    <form action="/pickAnother" method="POST">
+      <input type="radio" name="rating" value="5"> 5<br>
+      <input type="radio" name="rating" value="4"> 4<br>
+      <input type="radio" name="rating" value="3"> 3<br>
+      <input type="radio" name="rating" value="2"> 2<br>
+      <input type="radio" name="rating" value="1"> 1<br>
+        <br>
+      <input type="submit" value="submit">
+    </form>
