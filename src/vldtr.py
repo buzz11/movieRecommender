@@ -7,16 +7,14 @@ from myLib import *
 
 class Validator():
     def __init__(self, df, user_df, logger, dcut):
-        self.df = df
-        self.user_df = user_df
         self.logger = logger
         dcutdt = dt.date(*[int(elem) for elem in dcut.split('/')])
         latestdt = dt.date(2005,12,31)
         testdays = int((latestdt - dcutdt).days/4)
         testcut = latestdt - dt.timedelta(days=testdays)
-        self.train_df = self.df.where(self.df.date >  testcut)
-        self.test_df  = self.df.where(self.df.date <= testcut)
-        self.train_df = self.train_df.union(self.user_df)
+        self.train_df = df.where(df.date >  testcut)
+        self.test_df  = df.where(df.date <= testcut)
+        self.train_df = self.train_df.union(user_df)
 
     def validate(self, model, write_path):
         self.logger.info('starting makeReccs')

@@ -32,10 +32,10 @@ def compare_rates(x):
     return x[0], int(userliked==recd)
 
 def performanceResultsViz(mscores, pscores, write_path):
-    pngs = glob('../my_app/static/*.png')
+    pngpaths = os.path.join('..', 'my_app', 'static', '*.png')
+    pngs = glob(pngpaths)
     for png in pngs:
         os.remove(png)
-
     plt.style.use('ggplot')
     plt.figure(figsize=(8,8))
     font = {'weight': 'bold',
@@ -43,12 +43,10 @@ def performanceResultsViz(mscores, pscores, write_path):
     plt.rc('font', **font)
     ms = pd.Series(mscores) * 100
     ps = pd.Series(pscores) * 100
-    plt.hist([ms, ps],
-             bins=10,
-             histtype='bar',
-             color=['purple', 'gray'])
-    plt.ylim(0, 150)
-    # plt.axis([0, 100, 0, .25])
+    plt.hist([ms, ps], bins=10, histtype='bar', normed=True, alpha=.4,
+    color=['purple', 'gray'])
+    # plt.ylim(0, 150)
+    plt.axis([-10, 110, 0, .1])
 
     # ps.hist(bins=100,
     #         range=(0,100),
@@ -57,17 +55,10 @@ def performanceResultsViz(mscores, pscores, write_path):
     #         color='fuchsia',
     #         label='Recommendations from popularity')
 
-    ps.plot(kind='kde',
-            color='gray',
-            # alpha=.7,
-            linewidth='2',
-            label='_nolegend_')
+    ps.plot(kind='kde', color='gray', linewidth='2', label='_nolegend_')
 
-    plt.axvline(100*sum(pscores)/len(pscores),
-                color='gray',
-                linestyle='dashed',
-                linewidth='1.5',
-                label='Mean Matches from popularity')
+    plt.axvline(sum(ps)/len(ps), color='gray', linestyle='dashed',
+    linewidth='1.5', label='Mean Matches from popularity')
 
     # ms.hist(bins=100,
     #         range=(0,100),
@@ -76,17 +67,11 @@ def performanceResultsViz(mscores, pscores, write_path):
     #         color='cyan',
     #         label='Recommendations from ALS')
 
-    ms.plot(kind='kde',
-            color='purple',
-            alpha=.7,
-            linewidth='2',
-            label='_nolegend_')
+    ms.plot(kind='kde', color='purple', alpha=.7, linewidth='2',
+    label='_nolegend_')
 
-    plt.axvline(100*sum(mscores)/len(mscores),
-                color='purple',
-                linestyle='dashed',
-                linewidth='1.5',
-                label='Mean Matches from ALS')
+    plt.axvline(sum(ms)/len(ms), color='purple', linestyle='dashed',
+    linewidth='1.5', label='Mean Matches from ALS')
 
     plt.xlabel('Percent of Good Recommendations per User')
     plt.ylabel('Relative Frequency')
