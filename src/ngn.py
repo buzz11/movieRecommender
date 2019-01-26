@@ -152,7 +152,7 @@ class Engine():
 		self.cachedmoviesdf = self.cachedmoviesdf.append(toappend,
 		ignore_index=True)
 		self.cachedmoviesdf.to_csv(self.cachefile, index=False)
-		self.cachedmoviesdf = pd.read_csv(self.cachefile)
+		self.cachedmoviesdf = pd.read_csv(self.cachefile).fillna('')
 
 	def hitmoviedb(self, movie):
 		moviepagebase = 'https://www.themoviedb.org/movie/%s'

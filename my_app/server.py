@@ -24,7 +24,10 @@ def run_server(app):
     cherrypy.engine.block()
 
 if __name__ == "__main__":
-    sc = ps.SparkContext('local[%s]' % mp.cpu_count())
+    cores = mp.cpu_count()
+    if cores > 1:
+        cores = int(cores/2)
+    sc = ps.SparkContext('local[%s]' % cores)
     src = os.path.join('..', 'src')
     sc.addFile(os.path.join(src, 'ngn.py'))
     sc.addFile(os.path.join(src, 'vldtr.py'))

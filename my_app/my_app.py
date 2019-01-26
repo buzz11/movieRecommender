@@ -54,8 +54,7 @@ def addRating():
 	r = session.get('ratings')
 	session['userratings'], session['ratings'] =\
 	re.add_rating(movie, rating, ur, r)
-	return render_template('pickmore.html', form=form,
-	userratings=session.get('userratings'))
+	return render_template('pickmore.html', form=form, userratings=ur)
 
 @main.route('/makeRecommendations', methods=["POST"])
 def makeRecommendations():
@@ -68,6 +67,15 @@ def makeRecommendations():
 def validateModel():
 	wrote_name = re.validate_model()
 	return render_template('modelval.html', wn=wrote_name)
+
+@main.errorhandler(400)
+def page_not_found(error):
+	ur = session.get('userratings')
+	form = SearchForm(request.form)
+	if len(ur)==0:
+		return render_template('index.html', form=form)
+	return render_template('pickmore.html', form=form,
+	userratings=ur)
 
 def create_Myapp(spark_context, sample=False):
 	global re
