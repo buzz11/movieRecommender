@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-  <h2>here are some movies you will likely enjoy:</h2>
+  <h2>movie recommendations</h2>
   <form action="/validateModel", method="POST">
     <input type="submit" value="validate recommender"/>
   </form>
@@ -19,3 +19,4 @@
     <hr>
     {% endfor %}
 </body>
+</html>
