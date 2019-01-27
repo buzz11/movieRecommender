@@ -11,8 +11,9 @@ $ cd my_app
 $ python3 server.py
 ```
 
-By default, only the last three months of ratings are read in. Change the cutoff in ngn.Engine, the latest ratings are '2005/12/31'.
+By default, only the last three months of ratings are read in. Change the cutoff in ngn.Engine, the latest ratings are 2005/12/31
 
-To run with the subset of movie ratings included in this repo:
-- ```$ python3 server.py demo
+- to run with the subset of movie ratings included in this repo:
+```
+$ python3 server.py demo
 ```
