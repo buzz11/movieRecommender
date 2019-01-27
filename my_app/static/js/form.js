@@ -1,6 +1,6 @@
 $(document).ready(function() {
 		$.ajax({
-				url: '{{ url_for("main.autocomplete") }}'
+				url: '_autocomplete'
 				}).done(function (data){
 						$('#movie_autocomplete').autocomplete({
 								source: data,
@@ -8,3 +8,7 @@ $(document).ready(function() {
 						});
 				});
 		});
+
+// $(window).load(function() {
+//    $('.preloader').fadeOut('slow');
+// });

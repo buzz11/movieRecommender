@@ -1,20 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <style>
-  body {
-    font-family: Verdana, Geneva, sans-serif;
-  }
-  </style>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-  <script type="text/javascript">// <![CDATA[
-          function loading(){
-              $("#loading").show();
-              $("#content").hide();
-          }
-  // ]]></script>
-  <div id="loading"></div>
-  <div id="content">
-  <h2>here are some movies you will likely enjoy</h2>
+  <h2>here are some movies you will likely enjoy:</h2>
   <form action="/validateModel", method="POST">
     <input type="submit" value="validate recommender"/>
   </form>
@@ -27,5 +18,4 @@
     </p>
     <hr>
     {% endfor %}
-  </div>
 </body>

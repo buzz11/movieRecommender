@@ -1,35 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <style>
-  body {
-    font-family: Verdana, Geneva, sans-serif;
-  }
-  </style>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
-  <script>
-      $(function() {
-          $.ajax({
-              url: '{{ url_for("main.autocomplete") }}'
-              }).done(function (data){
-                  $('#movie_autocomplete').autocomplete({
-                      source: data,
-                      minLength: 2
-                  });
-              });
-          });
-  </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
 </head>
-<h2>that last one isn't in the list, try another ... </h2>
-{{ form.autocomp.label }}: {{ form.autocomp }}
-
-<!-- <form action="/submitRating", method="POST">
-  <input list="movie" name="movie" placeholder="movie"/>
-    <datalist id='movie'>
-      {% for movie in movieOptions %}
-      <option value='{{movie}}'>{{movie}}</option>
-      {% endfor %}
-    </datalist>
-  <input type="submit" value="rate" />
-</form> -->
+<body>
+  <h2>that last one isn't in the list, try another ... </h2>
+  {{ form.autocomp.label }}: {{ form.autocomp }} {{  form.submit }}
+</body>
+</html>

@@ -1,0 +1,8 @@
+*/.ipynb_checkpoints
+my_app/static/*.png
+*/.DS_Store
+*/__pycache__
+*/spark-warehouse
+spark-warehouse
+data/cachedmovies.csv
+my_app/static/143.gif
