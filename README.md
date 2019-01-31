@@ -23,7 +23,7 @@ $ python3 server.py demo
 
 ## Are the recommendations any good?
 
-The ALS model is trained with the ratings that were submitted during the earliest three-quarters of time span of the ratings. Any user who made a rating during the last quarter of time that the ratings span will be recommended by the model, they are the test users.
+The ALS model is trained with the ratings that were submitted during the earliest three-quarters of time span of the ratings. Any user who made a rating during the last quarter of time that the ratings span will be made recommendations by the model, they are the test users.
 
 The model predicts which 400 movies each test user will rate the highest. These predictions are joined to the test set.
 
