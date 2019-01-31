@@ -26,7 +26,7 @@ class Validator():
         pscores = self.jointestandpop(self.popmovies)
 
         self.logger.info('starting performanceResultsViz')
-        performanceResultsViz(mscores, pscores, write_path)
+        self.ms, self.ps = performanceResultsViz(mscores, pscores, write_path)
 
     def makeReccs(self, model):
         subSet = self.test_df.select('user').dropDuplicates()

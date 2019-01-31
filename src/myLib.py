@@ -35,46 +35,51 @@ def performanceResultsViz(mscores, pscores, write_path):
     pngpaths = os.path.join('..', 'my_app', 'static', '*.png')
     pngs = glob(pngpaths)
     for png in pngs:
+        if 'exmple.png' in png:
+            continue
         os.remove(png)
     plt.style.use('ggplot')
     plt.figure(figsize=(8,8))
     font = {'weight': 'bold',
             'size': 12}
     plt.rc('font', **font)
-    ms = pd.Series(mscores) * 100
-    ps = pd.Series(pscores) * 100
-    plt.hist([ms, ps], bins=10, histtype='bar', normed=True, alpha=.4,
-    color=['purple', 'gray'])
-    # plt.ylim(0, 150)
-    plt.axis([-10, 110, 0, .1])
+    mscores = pd.Series(mscores) * 100
+    pscores = pd.Series(pscores) * 100
+    plt.figure(figsize=(8,8))
+    plt.style.use('seaborn-white')
+    plt.hist([mscores, pscores],
+        bins=25,
+        histtype='bar',
+        normed=True,
+        color=['steelblue','magenta'])
 
-    # ps.hist(bins=100,
-    #         range=(0,100),
-    #         density=True,
-    #         # alpha=.7,
-    #         color='fuchsia',
-    #         label='Recommendations from popularity')
+    plt.axis([-10, 110, 0, .25])
 
-    ps.plot(kind='kde', color='gray', linewidth='2', label='_nolegend_')
+    pscores.plot(kind='kde',
+        color='deeppink',
+        linewidth='1',
+        label='_nolegend_')
 
-    plt.axvline(sum(ps)/len(ps), color='gray', linestyle='dashed',
-    linewidth='1.5', label='Mean Matches from popularity')
+    plt.axvline(sum(pscores)/len(pscores),
+        color='deeppink',
+        linestyle='dashed',
+        linewidth='1',
+        label='Average Popularity %')
 
-    # ms.hist(bins=100,
-    #         range=(0,100),
-    #         density=True,
-    #         alpha=.7,
-    #         color='cyan',
-    #         label='Recommendations from ALS')
+    mscores.plot(kind='kde',
+        color='dodgerblue',
+        linewidth='1',
+        label='_nolegend_')
 
-    ms.plot(kind='kde', color='purple', alpha=.7, linewidth='2',
-    label='_nolegend_')
+    plt.axvline(sum(mscores)/len(mscores),
+        color='dodgerblue',
+        linestyle='dashed',
+        linewidth='1',
+        label='Average Recommender %')
 
-    plt.axvline(sum(ms)/len(ms), color='purple', linestyle='dashed',
-    linewidth='1.5', label='Mean Matches from ALS')
-
-    plt.xlabel('Percent of Good Recommendations per User')
+    plt.xlabel('Good Recommendations %')
     plt.ylabel('Relative Frequency')
     plt.title('Recommender Performance')
     plt.legend(loc='upper left', shadow=True)
     plt.savefig(write_path, dpi=96)
+    return mscores, pscores

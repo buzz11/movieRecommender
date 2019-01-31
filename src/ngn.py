@@ -20,11 +20,8 @@ class Ratings():
 		self.ratings = []
 
 class Engine():
-	def __init__(self, sc, dcut='2005/9/30', sample=False):
-		if not sample:
-			checkForFiles(self.logger)
-		readtextfiles = not checkForMunged()
-		self.dcut = dcut
+	def __init__(self, sc, dcut='2005/6/30', sample=False):
+
 		self.logger = logging.getLogger(__name__)
 		self.logger.setLevel(logging.INFO)
 		formatter = logging.Formatter(\
@@ -32,6 +29,12 @@ class Engine():
 		ch = logging.StreamHandler()
 		ch.setFormatter(formatter)
 		self.logger.addHandler(ch)
+
+		if not sample:
+			checkForFiles(self.logger)
+		readtextfiles = not checkForMunged()
+		self.dcut = dcut
+
 		self.spark = ps.sql.SparkSession(sc)
 		if readtextfiles and not sample:
 			parseandsave(dcut, self.logger, toLocal=True)
@@ -223,5 +226,8 @@ if __name__ == '__main__':
 	userratings, ratings = eng.add_rating(movie0, rating0, ur, r)
 	userratings, ratings = eng.add_rating(movie1, rating1, ur, r)
 	userratings, ratings = eng.add_rating(movie2, rating2, ur, r)
-	# recs = eng.make_recommendations(4)
-	# eng.validate_model()
+
+	recs = eng.make_recommendations(4, r, userratings)
+	eng.validate_model()
+	modelscores2graf = eng.vldr.ms
+	poplrscores2graf = eng.vldr.ps
