@@ -1,6 +1,8 @@
-### Apache Spark Movie Recommender
+### [Apache Spark Movie Recommender](www.rybot.xyz)
 
 This web app can give you some movie recommendations via collaborative filtering.
+
+Try it out by clicking the above heading.
 
 - download netflix-prize-data from [kaggle.com/netflix-inc/netflix-prize-data](http://www.kaggle.com/netflix-inc/netflix-prize-data) to the data directory
 
