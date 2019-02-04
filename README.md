@@ -1,4 +1,4 @@
-### [Apache Spark Movie Recommender](www.rybot.xyz)
+### [Apache Spark Movie Recommender](http://www.rybot.xyz)
 
 This web app can give you some movie recommendations via collaborative filtering.
 
